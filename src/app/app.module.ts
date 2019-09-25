@@ -3,10 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactTableComponent } from './contact-table/contact-table.component';
+import { ContactEditComponent } from './contact-edit/contact-edit.component';
+import { ContactAddComponent } from './contact-add/contact-add.component';
+import { ContactDeleteComponent } from './contact-delete/contact-delete.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactTableComponent,
+    ContactEditComponent,
+    ContactAddComponent,
+    ContactDeleteComponent
   ],
   imports: [
     BrowserModule,
