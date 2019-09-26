@@ -8,20 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactsService {
 
-
-  contacts: Contact[] = [];
+  contacts: Contact[];
 
   constructor(private http: HttpClient) { }
 
-  getContacts()  {
-    this.http.get<Contact[]>('http://www.mocky.io/v2/581335f71000004204abaf83').subscribe(contacts => {
-      contacts.map(contact => this.contacts.push(contact));
-    });
-    return this.contacts;
+  getContacts(): Observable<Contact[]> {
+        
+     return this.http.get<Contact[]>('http://www.mocky.io/v2/581335f71000004204abaf83');
+    
+
   }
 
   editContact(contact: Contact) {
-    this.contacts.
+    const contactIndex = JSON.parse(localStorage.getItem(this.localStorageKey)).map();
   }
 
   deleteContact(phone_number: string) {
