@@ -10,6 +10,5 @@ export class AppComponent implements OnInit {
   constructor(private contactService: ContactsService) {}
   
   ngOnInit() {
-    this.contactService.getContacts().subscribe(contacts => console.log(contacts));
   }
 }

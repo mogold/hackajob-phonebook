@@ -12,15 +12,12 @@ export class ContactsService {
 
   constructor(private http: HttpClient) { }
 
-  getContacts(): Observable<Contact[]> {
-        
-     return this.http.get<Contact[]>('http://www.mocky.io/v2/581335f71000004204abaf83');
-    
-
+  getContacts(): Observable<Contact[]>{
+    return this.http.get<Contact[]>('http://www.mocky.io/v2/581335f71000004204abaf83');
   }
 
   editContact(contact: Contact) {
-    const contactIndex = JSON.parse(localStorage.getItem(this.localStorageKey)).map();
+    //const contactIndex = JSON.parse(localStorage.getItem(this.localStorageKey)).map();
   }
 
   deleteContact(phone_number: string) {
