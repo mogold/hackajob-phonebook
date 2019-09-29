@@ -3,6 +3,7 @@ import { ContactsService } from './contacts.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactAddComponent } from './contact-add/contact-add.component';
 import { ContactTableComponent } from './contact-table/contact-table.component';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   addContact() {
-    const addDialog = this.dialog.open(ContactAddComponent);
+    const addDialog = this.dialog.open(ContactAddComponent, { width: environment.dialogWidth});
     addDialog.afterClosed().subscribe( event => {
       this.contactTableComponent.refreshData();
     })

@@ -8,6 +8,7 @@ import { ContactsService } from '../contacts.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactEditComponent } from '../contact-edit/contact-edit.component';
 import { ContactDeleteComponent } from '../contact-delete/contact-delete.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contact-table',
@@ -34,14 +35,14 @@ export class ContactTableComponent implements AfterViewInit, OnInit {
   }
 
   editContact(contact: Contact) {
-    const editDialog = this.dialog.open(ContactEditComponent, {data: contact});
+    const editDialog = this.dialog.open(ContactEditComponent, {data: contact, width: environment.dialogWidth});
     editDialog.afterClosed().subscribe(result => {
       this.refreshData();
     })
   }
 
   deleteContact(contact: Contact) {
-    const deleteDialog = this.dialog.open(ContactDeleteComponent, {data: contact});
+    const deleteDialog = this.dialog.open(ContactDeleteComponent, {data: contact, width: environment.dialogWidth});
     deleteDialog.afterClosed().subscribe(result => {
       this.refreshData();
     })

@@ -15,7 +15,10 @@ export class ContactEditComponent implements OnInit {
   
   contactUpdateForm = new FormGroup ({
     name: new FormControl(this.data.name),
-    address: new FormControl(this.data.address),
+    addressLine1: new FormControl(this.data.index_line1),
+    postcode: new FormControl(this.data.index_post_code),
+    city: new FormControl(this.data.index_city),
+    country: new FormControl(this.data.index_country),
     phone_number: new FormControl(this.data.phone_number)
   });
 
@@ -24,10 +27,16 @@ export class ContactEditComponent implements OnInit {
 
   update() {
 
+    let form = this.contactUpdateForm;
+
     let contact: Contact = {
-      name: this.contactUpdateForm.controls.name.value,
-      phone_number: this.contactUpdateForm.controls.phone_number.value,
-      address: this.contactUpdateForm.controls.address.value,
+      name: form.controls.name.value,
+      phone_number: form.controls.phone_number.value,
+      index_city: form.controls.city.value,
+      index_line1: form.controls.addressLine1.value,
+      index_country: form.controls.country.value,
+      index_post_code: form.controls.postcode.value,
+      address: `${form.controls.addressLine1.value}, ${form.controls.city.value} ${form.controls.postcode.value}, ${form.controls.country.value}`,
       id: this.data.id
     };
 

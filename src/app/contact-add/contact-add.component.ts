@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef} from '@angular/material/dialog';
 import { Contact } from '../contact';
 import { ContactsService } from '../contacts.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-add',
@@ -14,20 +14,28 @@ export class ContactAddComponent implements OnInit {
   constructor(public contactService: ContactsService, public dialogRef: MatDialogRef<ContactAddComponent>) { }
   
   contactAddForm = new FormGroup ({
-    name: new FormControl(''),
-    address: new FormControl(''),
-    phone_number: new FormControl('')
+    name: new FormControl('', Validators.required),
+    addressLine1: new FormControl('', Validators.required),
+    postcode: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    phone_number: new FormControl('', Validators.required)
   });
 
   ngOnInit() {
   }
 
   add() {
+    let form = this.contactAddForm;
 
     let contact: Contact = {
-      name: this.contactAddForm.controls.name.value,
-      phone_number: this.contactAddForm.controls.phone_number.value,
-      address: this.contactAddForm.controls.address.value,
+      name: form.controls.name.value,
+      phone_number: form.controls.phone_number.value,
+      index_city: form.controls.city.value,
+      index_line1: form.controls.addressLine1.value,
+      index_country: form.controls.country.value,
+      index_post_code: form.controls.postcode.value,
+      address: `${form.controls.addressLine1.value}, ${form.controls.city.value} ${form.controls.postcode.value}, ${form.controls.country.value}`,
       id: 0
     };
 

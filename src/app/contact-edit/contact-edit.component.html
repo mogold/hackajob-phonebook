@@ -1,19 +1,31 @@
 <h1 mat-dialog-title>Edit: {{data.name}}</h1>
 <div mat-dialog-content>
   <form [formGroup]="contactUpdateForm">
-    <mat-form-field>
-        <input matInput type="text" name="name" formControlName="name" placeholder="name">
-    </mat-form-field>
-
-    <mat-form-field>
-        <textarea matInput type="text" name="address" formControlName="address" placeholder="Address"></textarea>
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput type="text" name="phone_number" formControlName="phone_number" placeholder="Phone Number">
-    </mat-form-field>
+      <mat-form-field>
+          <input matInput type="text" name="name" formControlName="name" placeholder="Name">
+      </mat-form-field>
+  
+      <mat-form-field>
+          <input matInput type="text" name="addressLine1" formControlName="addressLine1" placeholder="Address Line 1">
+      </mat-form-field>
+  
+       <mat-form-field>
+          <input matInput type="text" name="postcode" formControlName="postcode" placeholder="Postcode">
+      </mat-form-field>
+  
+      <mat-form-field>
+          <input matInput type="text" name="city" formControlName="city" placeholder="City">
+      </mat-form-field>
+  
+      <mat-form-field>
+          <input matInput type="text" name="country" formControlName="country" placeholder="Country">
+      </mat-form-field>
+  
+      <mat-form-field>
+          <input matInput type="text" name="phone_number" formControlName="phone_number" placeholder="Phone Number">
+      </mat-form-field>
   </form>
 <div mat-dialog-actions>
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-button  (click)="update()">Update</button>
+  <button mat-button (click)="close()" color="accent">Cancel</button>
+  <button mat-button  (click)="update()" color="primary">Update</button>
 </div>
