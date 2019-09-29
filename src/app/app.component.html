@@ -1,2 +1,9 @@
-<app-contact-table></app-contact-table>
+<div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
 
+<app-contact-table *ngIf="!isLoadingResults"></app-contact-table>
+
+<button mat-fab color="primary" aria-label="Add a contact" class="fab" (click)="addContact()">
+    <mat-icon>add</mat-icon>
+</button>

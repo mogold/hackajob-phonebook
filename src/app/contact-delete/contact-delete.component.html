@@ -1,1 +1,13 @@
-<p>contact-delete works!</p>
+<h3 mat-dialog-title>Delete Contact</h3>
+<div mat-dialog-content>
+    <p>Please type in the full name <b>{{data.name}}</b>  in order to delete this contact</p>
+    <form [formGroup]="contactDeleteForm">
+        <mat-form-field>
+            <input matInput type="text" name="name" formControlName="name" placeholder="name">
+        </mat-form-field>
+    </form>
+    <div mat-dialog-actions>
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-button  (click)="delete()" color="warn">Delete</button>
+    </div>
+</div>  

@@ -8,13 +8,13 @@ import { ContactsService } from '../contacts.service';
 
 
 export class TableContactDataSource extends DataSource<Contact> {
-  data: [];
+  data: Contact[];
   paginator: MatPaginator;
   sort: MatSort;
 
   constructor(public contactService: ContactsService) {
     super();
-    this.contactService.getContacts().subscribe(contacts => this.data = contacts.contacts);
+    this.contactService.getContacts().subscribe(contacts => this.data = contacts);
   }
 
   
@@ -49,7 +49,10 @@ export class TableContactDataSource extends DataSource<Contact> {
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
         case 'phone_number': return compare(+a.phone_number, +b.phone_number, isAsc);
-        case 'address': return compare(a.address, b.address, isAsc);
+        case 'addressLine1': return compare(a.index_line1, b.index_line1, isAsc);
+        case 'city': return compare(a.index_city, b.index_city, isAsc);
+        case 'postcode': return compare(a.index_post_code, b.index_post_code, isAsc);
+        case 'country': return compare(a.index_country, b.index_country, isAsc);
         default: return 0;
       }
     });
