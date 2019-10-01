@@ -36,6 +36,7 @@ export class ContactAddComponent implements OnInit {
       index_country: form.controls.country.value,
       index_post_code: form.controls.postcode.value,
       address: `${form.controls.addressLine1.value}, ${form.controls.city.value} ${form.controls.postcode.value}, ${form.controls.country.value}`,
+      index_full_string: `${form.controls.name.value} ${form.controls.phone_number.value} ${form.controls.addressLine1.value} ${form.controls.city.value} ${form.controls.postcode.value} ${form.controls.country.value}`,
       id: 0
     };
 
