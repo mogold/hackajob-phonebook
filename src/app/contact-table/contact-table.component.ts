@@ -55,6 +55,12 @@ export class ContactTableComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
+  filter(term: string) {
+    this.contactSerivce.filterContacts(term).then(() => {
+      this.refreshData();
+    })
+  }
+
   constructor(public contactSerivce: ContactsService, public dialog: MatDialog) {}
 
 

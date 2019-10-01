@@ -31,7 +31,6 @@ export class TableContactDataSource extends DataSource<Contact> {
   }
 
   disconnect() {}
-
   
   private getPagedData(data: Contact[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;

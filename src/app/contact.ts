@@ -8,4 +8,5 @@ export interface Contact {
     index_post_code?: string;
     index_city?: string;
     index_house_number?: number;
+    index_full_string?: string;
 }

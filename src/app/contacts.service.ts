@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ContactsService {
 
   contacts: Contact[] = [];
+  originalContacts: Contact[] = [];
   
   constructor(private http: HttpClient) { }
 
@@ -35,13 +36,13 @@ export class ContactsService {
             line1 = addressArray[0];
             cityAndPostalCode = addressArray[1].split(" ");
             city = cityAndPostalCode[1];
-            postal_code = `${cityAndPostalCode[2]}  ${cityAndPostalCode[3]}`
+            postal_code = `${cityAndPostalCode[2]}  ${cityAndPostalCode[3] == undefined ? '' : cityAndPostalCode[3]}`
             country = addressArray[2];
           } else {
             line1 = `${addressArray[0]}, ${addressArray[1]}`;
             cityAndPostalCode = addressArray[2].split(" ");
             city = cityAndPostalCode[1];
-            postal_code = `${cityAndPostalCode[2]}  ${cityAndPostalCode[3]}`
+            postal_code = `${cityAndPostalCode[2]}  ${cityAndPostalCode[3] == undefined ? '' : cityAndPostalCode[3]}`
             country = addressArray[3];
           }
 
@@ -49,6 +50,7 @@ export class ContactsService {
           contact.index_country = country;
           contact.index_post_code = postal_code;
           contact.index_line1 = line1;
+          contact.index_full_string = `${contact.name.toLowerCase()} ${contact.address.toLowerCase()} ${contact.phone_number.toLowerCase()}`;
 
           contact.id = contactIndex;
           this.contacts.push(contact);
@@ -58,6 +60,22 @@ export class ContactsService {
         resolve(this.contacts);
       });
     });
+  }
+
+  filterContacts(term: string) {
+    return new Promise((resolve, reject) => {
+      if(this.originalContacts.length == 0) {
+        this.contacts.forEach(contact => this.originalContacts.push(contact));
+      }
+      this.contacts = [];
+  
+      this.originalContacts.forEach(contact => {
+        if(contact.index_full_string.includes(term.toLowerCase())) {
+          this.contacts.push(contact);
+        }
+      });
+      resolve();
+    })  
   }
 
   addContact(contact: Contact) {
