@@ -26,11 +26,11 @@ export class ContactsService {
         contacts.contacts.forEach((contact: Contact) => {
 
           const addressArray = contact.address.split(',');
-          let line1;
-          let cityAndPostalCode;
-          let city;
-          let postal_code;
-          let country;
+          let line1: string;
+          let cityAndPostalCode: string[];
+          let city: string;
+          let postal_code: string;
+          let country: string;
           
           if(addressArray.length == 3) {
             line1 = addressArray[0];
